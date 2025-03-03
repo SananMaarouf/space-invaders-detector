@@ -1,0 +1,27 @@
+require_relative '../lib/space_invaders_detector'
+
+# Exit if no radar file is provided
+if ARGV.empty?
+  puts "Usage: #{$PROGRAM_NAME} <radar_file>"
+  exit 1
+end
+
+# Read the radar file
+radar_file = ARGV[0]
+unless File.exist?(radar_file)
+  puts "Error: Radar file '#{radar_file}' not found."
+  exit 1
+end
+
+# Known invader patterns
+invader_patterns = [
+  "--o-----o-----o---o-----ooooooo---oo-ooo-oo-oooooooooooo-ooooooo-oo-o-----o-o---oo-oo---",
+  "---oo-----oooo---oooooo-oo-oo-oooooooooo--o--o---o-oo-o-o-o--o-o"
+]
+
+# Initialize and run the detector
+detector = SpaceInvadersDetector.new(invader_patterns)
+radar_sample = File.read(radar_file)
+puts "Radar sample:\n#{radar_sample}\n"
+results = detector.detect(radar_sample)
+detector.print_detection_results(results)
