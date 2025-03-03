@@ -1,5 +1,6 @@
 class Detector
-  SIMILARITY_THRESHOLD = 0.75 # Configurable threshold for pattern matching
+  # Configurable threshold for pattern matching
+  SIMILARITY_THRESHOLD = 0.75 
 
   def initialize(radar, known_patterns)
     @radar = radar
@@ -39,11 +40,11 @@ class Detector
         pattern_char = pattern.at(row, col)
         
         # Only count positions where the pattern has an 'o' or 'O'
-        if pattern_char == 'o' || pattern_char == 'O'
+        if pattern_char == 'o'
           total_points += 1
           
           radar_char = @radar.at(start_row + row, start_col + col)
-          if radar_char == 'o' || radar_char == 'O'
+          if radar_char == 'o'
             matching_points += 1
           end
         end

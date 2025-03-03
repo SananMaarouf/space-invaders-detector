@@ -2,7 +2,7 @@ require_relative '../lib/space_invaders_detector'
 
 # Exit if no radar file is provided
 if ARGV.empty?
-  puts "Usage: #{$PROGRAM_NAME} <radar_file>"
+  puts "You need to specify a radar file to read"
   exit 1
 end
 

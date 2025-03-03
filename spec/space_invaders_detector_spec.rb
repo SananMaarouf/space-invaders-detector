@@ -3,8 +3,8 @@ require_relative '../lib/space_invaders_detector'
 
 RSpec.describe SpaceInvadersDetector do
   let(:invader_patterns) { [
-    "--o---ooo-ooooo",
-    "-o-o--ooo---o--"
+    "--o-----o-----o---o-----ooooooo---oo-ooo-oo-oooooooooooo-ooooooo-oo-o-----o-o---oo-oo---",
+    "---oo-----oooo---oooooo-oo-oo-oooooooooo--o--o---o-oo-o-o-o--o-o"
   ] }
   
   subject { described_class.new(invader_patterns) }
