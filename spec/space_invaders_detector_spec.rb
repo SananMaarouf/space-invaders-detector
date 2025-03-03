@@ -20,23 +20,23 @@ RSpec.describe SpaceInvadersDetector do
   end
   
   describe '#detect' do
-    let(:radar_sample) { "-------\n--o----\n-ooo---\nooooo--\n-------" }
-    
-    it 'creates a Radar object and detects invaders' do
-      results = subject.detect(radar_sample)
-      expect(subject.radar).to be_a(Radar)
-      expect(results).to be_an(Array)
-      expect(results.length).to eq(2)  # Changed from 1 to 2
-      
-      # Verify the first match is the first pattern
-      expect(results[0][:invader_index]).to eq(0)
-      expect(results[0][:position]).to eq({ row: 1, col: 0 })
-      
-      # Verify the second match is the second pattern (with some similarity)
-      expect(results[1][:invader_index]).to eq(1)
-      # The exact position may vary based on your implementation
-    end
+  let(:radar_sample) { "-------\n--o----\n-ooo---\nooooo--\n-------" }
+
+  it 'creates a Radar object and detects invaders' do
+    results = subject.detect(radar_sample)
+
+    # Print the detection results so there's visible output in the test
+    subject.print_detection_results(results)
+
+    expect(subject.radar).to be_a(Radar)
+    expect(results).to be_an(Array)
+    expect(results.length).to eq(2)
+
+    expect(results[0][:invader_index]).to eq(0)
+    expect(results[0][:position]).to eq({ row: 1, col: 0 })
+    expect(results[1][:invader_index]).to eq(1)
   end
+end
   
   describe '#print_detection_results' do
     let(:results) { [
@@ -52,4 +52,5 @@ RSpec.describe SpaceInvadersDetector do
       expect { subject.print_detection_results([]) }.to output(/No invaders detected/).to_stdout
     end
   end
+  
 end
